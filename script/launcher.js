@@ -8,8 +8,10 @@ const launchModification = function(additionalScope) {
 
 let isOutdated = false;
 
-ModAPI.addAPICallback("ModdingTools", function(api) {
-	api = ModAPI.cloneAPI(api, false);
+Callback.addCallback("ModdingTools", function(api) {
+	// To keep original api object clean, editing
+	// can break launcher of other modules
+	api = api.assign({}, api);
 	api.isOutdated = isOutdated;
 	launchModification(api);
 });
@@ -20,6 +22,7 @@ ModAPI.addAPICallback("ModdingTools", function(api) {
 			isClientOnly: true
 		});
 	} catch (e) {
+		// Once there was no multiplayer
 		isOutdated = true;
 	}
 })();

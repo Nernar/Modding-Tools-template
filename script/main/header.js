@@ -65,9 +65,9 @@ Translation.addTranslation("API is empty or declared incorrectly.", {
 	ru: "API пустое или объявлено некорректно."
 });
 
-// There are many varieties of tools, but this one is most basic
-// and is used in most of currently modules.
-const TOOL = new EditorTool({
+// There are a number of existing tools, but this one is
+// one of the simplest and does not require a lot of configuration.
+const TOOL = new SidebarTool({
 	// Responsible for button window, which also includes loading window.
 	controlDescriptor: {
 		logotype: function(tool, control) {
