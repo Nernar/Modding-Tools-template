@@ -16,6 +16,10 @@
 
 */
 
+let $ = new JavaImporter();
+// Needed to check if player has entered world.
+$.importClass(InnerCorePackage.api.runtime.LevelInfo);
+
 Translation.addTranslation("To find out item in hand IDs, load any world firstly.", {
 	ru: "Чтобы узнать идентификатор предмета в руке, сначала загрузите мир."
 });
@@ -26,22 +30,22 @@ Translation.addTranslation("To find out item in hand IDs, load any world firstly
  * @param {string} apiName modapi requires name
  */
 const displayApiInformation = function(apiName) {
-	let popup = new ListingPopup();
+	let popup = new ExpandablePopup();
 	popup.setTitle(apiName);
 	let api = ModAPI.requireAPI(apiName);
-	// The reverse is unlikely, but possible.
+	// Most convenient way to add content is with a fragment.
+	let fragment = popup.getFragment();
 	if (api && typeof api == "object") {
-		popup.setOnClickListener(function(index) {
-			let button = popup.getButton(index);
-			RuntimeCodeEvaluate.showSpecifiedDialog
-				("var api = ModAPI.requireAPI(\"" + apiName + "\");\n" +
-				 "api." + button.view.getText() + "();");
-		});
 		for (let element in api) {
-			popup.addButtonElement(element);
+			let nonIterableElement = element;
+			fragment.addSolidButton(element, function() {
+				RuntimeCodeEvaluate.showSpecifiedDialog(
+					"var api = ModAPI.requireAPI(\"" + apiName + "\");\n" +
+					"api." + nonIterableElement + "();");
+			});
 		}
 	} else {
-		popup.addButtonElement(translate("API is empty or declared incorrectly."))
+		fragment.addExplanatory(translate("API is empty or declared incorrectly."))
 	}
 	// Opens a pop-up window, optionally specifying coordinates
 	// or a widget next to which the window should appear.
@@ -117,7 +121,7 @@ const TOOL = new SidebarTool({
 					bitmap: "templateSomething",
 					// It is a good practice to add items whose functions will be added later.
 					// For example, yellow color describes incompletely implemented functionality.
-					tint: Interface.Color.RED
+					tint: android.graphics.Color.RED
 				},
 				title: translate("Something")
 			}]
