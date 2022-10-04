@@ -1,0 +1,38 @@
+{
+	"info": {
+		"name": "Unnamed Assistant",
+		"version": "0.4",
+		"description": "Creator Modding Tools Extension.",
+		"clientOnly": true
+	},
+	"api": "CoreEngine",
+	"resources": [
+		{
+			"path": "assets/resource",
+			"type": "resource_directory"
+		}
+	],
+	"sources": [
+		{
+			"type": "launcher",
+			"language": "javascript",
+			"source": "launcher.js"
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"source": "script"
+		}
+	],
+	"compile": [],
+	"additional": [
+		{
+			"source": "assets/root/*",
+			"targetDir": "."
+		}
+	],
+	"excludeFromTemplate": [
+		"assets/sample",
+		"sample"
+	]
+}

@@ -1,0 +1,34 @@
+{
+	"info": {
+		"name": "Assistant Template",
+		"version": "0.4",
+		"author": "Nernar",
+		"description": "Example of Modding Tools Assistant usage.",
+		"clientOnly": true
+	},
+	"api": "CoreEngine",
+	"resources": [],
+	"sources": [
+		{
+			"type": "launcher",
+			"language": "javascript",
+			"source": "sample/launcher.js"
+		},
+		{
+			"type": "sample",
+			"language": "javascript",
+			"source": "script"
+		}
+	],
+	"compile": [],
+	"additional": [
+		{
+			"source": "assets/root/*",
+			"targetDir": "."
+		},
+		{
+			"source": "assets/sample/*",
+			"targetDir": "."
+		}
+	]
+}

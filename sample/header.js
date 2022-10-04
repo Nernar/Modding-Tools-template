@@ -1,6 +1,6 @@
 /*
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright 2022 Nernar (github.com/Nernar)
    
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 let $ = new JavaImporter();
 // Needed to check if player has entered world.
-$.importClass(InnerCorePackage.api.runtime.LevelInfo);
+$.importClass(InnerCorePackages.api.runtime.LevelInfo);
 
 Translation.addTranslation("To find out item in hand IDs, load any world firstly.", {
 	ru: "Чтобы узнать идентификатор предмета в руке, сначала загрузите мир."
@@ -182,6 +182,7 @@ const TOOL = new SidebarTool({
 				// For item identifier output.
 				itemIndex++;
 			}
+			// Returned text here will be displayed under `showHint`.
 			if (itemIndex == 0) {
 				return translate("Shows code execution window");
 			} else if (itemIndex == 1) {
@@ -206,7 +207,7 @@ BitmapDrawableFactory.mapDirectory(__dir__ + "ui/", true);
 
 // You can describe your tool using a unique name so that
 // Modding Tools can recognize which ID your tool is located by.
-// For example, a banal "tileentity" or "modapi" would be a good name.
+// For example, "tileentity" or "modapi" would be a good name.
 registerMenuTool("template", TOOL);
 
 // If tool should not be in main Modding Tools menu, but should be

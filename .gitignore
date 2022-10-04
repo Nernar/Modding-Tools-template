@@ -1,1 +1,4 @@
-script/main.js
+output
+tsconfig.json
+*.log
+*.icmod
